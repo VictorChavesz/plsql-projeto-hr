@@ -1,0 +1,42 @@
+CREATE OR REPLACE TRIGGER TRG_LOG_SALARIO
+AFTER INSERT OR UPDATE OF SALARY OR DELETE
+ON EMPLOYEES
+FOR EACH ROW
+DECLARE
+    vEVENTO         VARCHAR2(1);
+    vEMPLOYEE_ID    EMPLOYEES.EMPLOYEE_ID%TYPE;
+BEGIN
+    CASE
+        WHEN 
+            INSERTING
+        THEN
+            vEVENTO := 'I';
+            vEMPLOYEE_ID := :NEW.EMPLOYEE_ID;
+        WHEN
+            UPDATING
+        THEN
+            vEVENTO := 'U';
+            vEMPLOYEE_ID := :NEW.EMPLOYEE_ID;
+        ELSE
+            vEVENTO := 'E';
+            vEMPLOYEE_ID := :OLD.EMPLOYEE_ID;
+    END CASE;
+    
+    INSERT INTO LOG_SALARIO_EMPREGADOS(
+        LOG_ID,
+        TIPO_ACAO,
+        DATA_ALTERACAO,
+        EMPLOYEE_ID,
+        SALARIO_ANTES,
+        SALARIO_DEPOIS,
+        USUARIO_ALTERACAO
+    )VALUES(
+        SEQ_LOG_SALARIO_EMPREGADOS.NEXTVAL,
+        vEVENTO,
+        SYSTIMESTAMP,
+        vEMPLOYEE_ID,
+        :OLD.SALARY,
+        :NEW.SALARY,
+        USER
+    );
+END;
