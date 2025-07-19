@@ -45,6 +45,7 @@ BEGIN
         pDEPARTMENT_ID
         );
         
+COMMIT;
 EXCEPTION
     WHEN OTHERS
     THEN
