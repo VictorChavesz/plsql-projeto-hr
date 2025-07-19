@@ -1,0 +1,57 @@
+--Criando diretorio
+
+CREATE OR REPLACE DIRECTORY ARQUIVOS AS 'C:\Arquivos_prova'
+
+--Dando os privilegios
+
+GRANT READ, WRITE ON DIRECTORY ARQUIVOS TO HR1;
+
+CREATE OR REPLACE PROCEDURE PRC_GERA_RELATORIO_POR_DEPARTAMENTO(pDEPARTMENT_ID EMPLOYEES.DEPARTMENT_ID%TYPE)
+IS
+    CURSOR cEMPLOYEES IS
+        SELECT 
+            EMPLOYEE_ID,
+            FUN_OBTEM_NOME_COMPLETO(EMPLOYEE_ID) AS NOME_COMPLETO,
+            EMAIL,
+            SALARY,
+            JOB_ID
+        FROM
+            EMPLOYEES
+        WHERE
+            DEPARTMENT_ID = pDEPARTMENT_ID;
+    
+    vDEPARTMENT_NAME DEPARTMENTS.DEPARTMENT_NAME%TYPE;
+    vFILE UTL_FILE.FILE_TYPE;
+BEGIN
+    
+    SELECT 
+        DEPARTMENT_NAME
+    INTO
+        vDEPARTMENT_NAME
+    FROM
+        DEPARTMENTS
+    WHERE
+        DEPARTMENT_ID = pDEPARTMENT_ID;
+    
+    vFILE := UTL_FILE.FOPEN('ARQUIVOS', vDEPARTMENT_NAME||SYSDATE||'.csv', 'w', 32767);
+    
+    UTL_FILE.PUT_LINE(vFILE, 'EMPLOYEE_ID,NOME_COMPLETO,EMAIL,SALARY,JOB_ID');
+    
+    FOR cRECORD IN cEMPLOYEES LOOP
+        
+        UTL_FILE.PUT_LINE(vFILE, cRECORD.EMPLOYEE_ID    || ',' || 
+                                 cRECORD.NOME_COMPLETO  || ',' || 
+                                 cRECORD.EMAIL          || ',' || 
+                                 cRECORD.SALARY         || ',' ||         
+                                 cRECORD.JOB_ID);
+        
+    END LOOP;
+    
+    UTL_FILE.FCLOSE(vFILE);
+
+EXCEPTION
+    WHEN OTHERS
+    THEN
+        UTL_FILE.FCLOSE(vFILE);
+        RAISE_APPLICATION_ERROR(-20002, 'ERRO ORACLE:' || SQLCODE || SQLERRM);
+END;

@@ -1,0 +1,20 @@
+CREATE OR REPLACE FUNCTION FUN_VALIDA_EMAIL(pEMAIL EMPLOYEES.EMAIL%TYPE)
+RETURN NUMBER
+IS
+    CURSOR cEMAIL IS
+        SELECT
+            EMAIL
+        FROM
+            EMPLOYEES;
+
+BEGIN
+    FOR vRECORD IN cEMAIL LOOP
+    
+        IF UPPER(vRECORD.EMAIL) = UPPER(pEMAIL)
+            THEN
+                RETURN 1;
+        END IF;
+    END LOOP;
+    
+    RETURN 0;
+END;
