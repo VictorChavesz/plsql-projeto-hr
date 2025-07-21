@@ -15,7 +15,7 @@ Este repositório contém os scripts e componentes de uma simulação prática d
 
 ---
 
-## ⚙Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Oracle Database 21c+**
 - **PL/SQL**
@@ -25,16 +25,16 @@ Este repositório contém os scripts e componentes de uma simulação prática d
 
 ## Estrutura do Repositório
 
-plsql-projeto-hr/
-├── README.md
-├── scripts/
-│ ├── procedures/
-│ ├── functions/
-│ ├── triggers/
-│ ├── views/
-│ ├── jobs/
-├── test/
-│ └── teste.sql
+plsql-projeto-hr/ \
+├── README.md \
+├── scripts/ \
+│ ├── procedures/ \
+│ ├── functions/ \
+│ ├── triggers/ \
+│ ├── views/ \
+│ ├── jobs/ \
+├── test/ \
+│ └── teste.sql \
 └── tables_auxiliares.sql
 
 
