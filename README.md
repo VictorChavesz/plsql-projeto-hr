@@ -46,15 +46,15 @@ plsql-projeto-hr/ \
 
 #### Procedures
 
-- `PROC_INSERE_FUNCIONARIO`: Insere um novo funcionário com os dados obrigatórios.
-- `PROC_ATUALIZA_SALARIO`: Atualiza o salário de um funcionário, garantindo que o novo valor não seja inferior ao mínimo estabelecido para o cargo.
-- `PROC_TRANSFERE_FUNCIONARIO`: Transfere um funcionário para outro departamento. Caso haja alteração, registra o evento na tabela `job_history`.
+- `PRC_INSERE_FUNCIONARIO`: Insere um novo funcionário com os dados obrigatórios.
+- `PRC_ATUALIZA_SALARIO`: Atualiza o salário de um funcionário, garantindo que o novo valor não seja inferior ao mínimo estabelecido para o cargo.
+- `PRC_TRANSFERE_FUNCIONARIO`: Transfere um funcionário para outro departamento. Caso haja alteração, registra o evento na tabela `job_history`.
 
 #### Functions
 
-- `FNC_CALCULA_MEDIA_SALARIAL`: Retorna a média salarial dos funcionários de um departamento específico.
-- `FNC_OBTEM_NOME_COMPLETO`: Retorna o nome completo (primeiro e último nome) de um funcionário, a partir do seu identificador.
-- `FNC_VERIFICA_HIERARQUIA`: Verifica se um funcionário é gerente direto de outro (retorno booleano ou 1/0).
+- `FUN_CALCULA_MEDIA_SALARIAL`: Retorna a média salarial dos funcionários de um departamento específico.
+- `FUN_OBTEM_NOME_COMPLETO`: Retorna o nome completo (primeiro e último nome) de um funcionário, a partir do seu identificador.
+- `FUN_VERIFICA_HIERARQUIA`: Verifica se um funcionário é gerente direto de outro (retorno booleano ou 1/0).
 
 #### Triggers
 
