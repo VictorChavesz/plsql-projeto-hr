@@ -22,19 +22,22 @@ BEGIN
             vEVENTO := 'D';
     END CASE;  
     
-    INSERT INTO JOB_HISTORY(
-        EMPLOYEE_ID,
-        START_DATE,
-        END_DATE,
-        JOB_ID,
-        DEPARTMENT_ID
-    )VALUES(
-        vEMPLOYEE_ID,
-        :OLD.HIRE_DATE,
-        SYSDATE,
-        :OLD.JOB_ID,
-        :OLD.DEPARTMENT_ID
-    );
+    IF vEVENTO != 'I'
+    THEN
+            INSERT INTO JOB_HISTORY(
+                EMPLOYEE_ID,
+                START_DATE,
+                END_DATE,
+                JOB_ID,
+                DEPARTMENT_ID
+            )VALUES(
+                vEMPLOYEE_ID,
+                :OLD.HIRE_DATE,
+                SYSDATE,
+                :OLD.JOB_ID,
+                :OLD.DEPARTMENT_ID
+            );
+    END IF;
    
     INSERT INTO LOG_JOB_HISTORY(
         LOG_ID,
