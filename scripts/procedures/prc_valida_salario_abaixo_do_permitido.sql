@@ -52,4 +52,9 @@ BEGIN
                     );
         END IF;
     END LOOP;
+
+EXCEPTION
+    WHEN OTHERS
+    THEN
+        RAISE_APPLICATION_ERROR(-20002, 'ERRO ORACLE: ' || SQLCODE || SQLERRM);
 END;
