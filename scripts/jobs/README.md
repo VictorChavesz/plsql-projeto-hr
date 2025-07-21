@@ -1,2 +1,3 @@
-# plsql-projeto-hr
+# Jobs
 
+--`HR1.JOB_PRC_VALIDA_SALARIO_ABAIXO_DO_PERMITIDO`: Job do tipo STORED PROCEDURE que roda toda meia noite a procedure PRC_VALIDA_SALARIO_ABAIXO_DO_PERMITIDO
