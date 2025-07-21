@@ -46,7 +46,7 @@ plsql-projeto-hr/ \
 
 #### Procedures
 
-- `PROC_INSERE_FUNCIONARIO`: Insere um novo funcionário com os dados obrigatórios e retorna o identificador gerado.
+- `PROC_INSERE_FUNCIONARIO`: Insere um novo funcionário com os dados obrigatórios.
 - `PROC_ATUALIZA_SALARIO`: Atualiza o salário de um funcionário, garantindo que o novo valor não seja inferior ao mínimo estabelecido para o cargo.
 - `PROC_TRANSFERE_FUNCIONARIO`: Transfere um funcionário para outro departamento. Caso haja alteração, registra o evento na tabela `job_history`.
 
